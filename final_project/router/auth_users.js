@@ -46,25 +46,25 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
 
   // Check if the review is provided
   if (!review) {
-    return res.status(400).json({ message: "Review cannot be empty." });
+      return res.status(400).json({ message: "Review cannot be empty." });
   }
 
   // Check if the book exists
   if (!books[isbn]) {
-    return res.status(404).json({ message: "Book not found." });
+      return res.status(404).json({ message: "Book not found." });
   }
 
   // Initialize reviews if not present
   if (!books[isbn].reviews) {
-    books[isbn].reviews = {};
+      books[isbn].reviews = {};
   }
 
   // Add or update the review for the book based on the username
   books[isbn].reviews[username] = review;
 
   return res.status(200).json({
-    message: "Review added/modified successfully.",
-    reviews: books[isbn].reviews,
+      message: "Review added/modified successfully.",
+      reviews: books[isbn].reviews,
   });
 });
 
